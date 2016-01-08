@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+int anagram(char *a1, char *a2)
+{
+	int i, j, len = strlen(a1);
+	if (strlen(a1) != strlen(a2)) return 0;
+  //cyklus v cykle, i-ty znak nachadzajuci sa v a1 sa hlada a2, pokial ho najde, zmeni ho na '*',
+  //takto prejde vsetky znaky, pokial je druhy string anagramom prveho, musia byt vsetky znaky v nom hviezdicky
+	for (i = 0; i < len; i++)
+	{
+		for (j = 0; j < len; j++)
+		{
+			if (a1[i] == a2[j]) 
+			{
+				a2[j] = '*'; break;
+			}
+		}
+	}
+	//zisti ci su vsetky znaky hviezdicky, ak najde nieco ine vrati 0
+	for (i = 0; i < len; i++)
+	{
+		if (a2[i] != '*') return 0;
+	}
+	return 1;
+}
+
+int main()
+{
+
+	char a1[] = "jozo", a2[] = "ojoz";
+	printf("%d\n", anagram(a1, a2));
+	return 0;
+}
